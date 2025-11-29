@@ -71,8 +71,8 @@ export default function HomePage() {
           <Link href="/assistant" className="px-6 sm:px-8 py-2 sm:py-3 rounded-full cursor-pointer bg-[#76ABAE] text-[#222831] hover:scale-105 transition ">
             need help?
           </Link>
-          <Link href="/blog" className="px-6 sm:px-8 py-2 sm:py-3 rounded-full cursor-pointer border-2 border-[#76ABAE] text-[#76ABAE] hover:bg-[#EEEEEE] hover:text-[#222831] transition">
-            see our blog
+          <Link href="/bmi" className="px-6 sm:px-8 py-2 sm:py-3 rounded-full cursor-pointer border-2 border-[#76ABAE] text-[#76ABAE] hover:bg-[#EEEEEE] hover:text-[#222831] transition">
+            Health Calculator
           </Link>
         </div>
       </section>
