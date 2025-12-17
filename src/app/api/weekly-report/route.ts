@@ -109,7 +109,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       reply: completion.choices[0].message?.content,
     });
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "Weekly failed" }, { status: 500 });
   }
 }
