@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const client = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1",
+});
 
 export async function POST(req: Request) {
   try {
@@ -14,7 +17,7 @@ export async function POST(req: Request) {
     }
 
     const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "llama-3.1-8b-instant",
       messages: [
         {
           role: "system",
@@ -43,7 +46,7 @@ export async function POST(req: Request) {
             "Sorry, I can only help with nutrition, health, and fitness topics"
           `
         },
-        ...messages,
+        ...messages.slice(-10),
       ],
       // thr output of ai
       max_tokens: 800,
@@ -51,8 +54,8 @@ export async function POST(req: Request) {
 
     const reply = completion.choices?.[0]?.message?.content || "sorry i didnt get you";
     return NextResponse.json({ reply });
-  } catch {
-    console.error("err");
+  } catch(error) {
+    console.error("err", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
